@@ -3,8 +3,8 @@ import { getEnv } from '@shared/environment'
 
 const JSONPlaceholderBaseUrl = getEnv('JSONPlaceholder_BASE_URL')
 
-export class GatewayForJSONPlaceholder extends HttpClient {
-  private static instance: GatewayForJSONPlaceholder
+export class ClientForJSONPlaceholder extends HttpClient {
+  private static instance: ClientForJSONPlaceholder
 
   private constructor () {
     super({ baseURL: JSONPlaceholderBaseUrl, name: 'GatewayForJSONPlaceholder' })
@@ -48,9 +48,9 @@ export class GatewayForJSONPlaceholder extends HttpClient {
     return await this._client.delete(url, { ...config, headers })
   }
 
-  public static getInstance (): GatewayForJSONPlaceholder {
+  public static getInstance (): ClientForJSONPlaceholder {
     if (this.instance == null) {
-      this.instance = new GatewayForJSONPlaceholder()
+      this.instance = new ClientForJSONPlaceholder()
       return this.instance
     }
 

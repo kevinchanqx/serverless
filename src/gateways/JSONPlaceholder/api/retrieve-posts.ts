@@ -1,9 +1,9 @@
-import { type GatewayForJSONPlaceholder } from '../http-client'
+import { type ClientForJSONPlaceholder } from '../http-client'
 
 export type RetrievePostsFunction = () => Promise<unknown>
 
 export const makeRetrievePosts =
-  (gateway: GatewayForJSONPlaceholder): RetrievePostsFunction =>
+  (gateway: ClientForJSONPlaceholder): RetrievePostsFunction =>
     async () => {
       const url = '/posts'
 

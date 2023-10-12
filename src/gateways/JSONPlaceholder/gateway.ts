@@ -1,7 +1,7 @@
 import { makeGetPost, makeRetrievePosts } from './api'
-import { GatewayForJSONPlaceholder } from './http-client'
+import { ClientForJSONPlaceholder } from './http-client'
 
-const client = GatewayForJSONPlaceholder.getInstance()
+const gateway = ClientForJSONPlaceholder.getInstance()
 
-export const getPost = makeGetPost(client)
-export const retrievePosts = makeRetrievePosts(client)
+export const getPost = makeGetPost(gateway)
+export const retrievePosts = makeRetrievePosts(gateway)
