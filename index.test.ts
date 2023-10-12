@@ -1,3 +1,0 @@
-interface Buy {
-  name: string
-}
