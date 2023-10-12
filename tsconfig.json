@@ -18,7 +18,9 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "paths": {
-      "@shared/*": ["./src/shared/*"]
+      "@gateways/*": ["./src/gateways/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@services/*": ["./src/services/*"]
     },
     "importHelpers": true
   }
