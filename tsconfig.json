@@ -1,4 +1,5 @@
 {
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.test.ts", "**/*/dist"],
   "compilerOptions": {
     "allowUnreachableCode": false,
@@ -10,16 +11,15 @@
     "module": "ES2022",
     "target": "ES2022",
     "moduleResolution": "Node",
-    "paths": {
-      "@example/*": ["./node_modules"]
-    },
     "resolveJsonModule": true,
     "noEmit": true,
     "sourceMap": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "paths": {
+      "@shared/*": ["./src/shared/*"]
+    },
+    "importHelpers": true
   }
 }
