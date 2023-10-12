@@ -48,15 +48,15 @@ provider:
 
 functions:
   posts:
-    handler: './adapters/primary/http.handler'
+    handler: ./adapters/primary/http.handler
     timeout: 30
     layers:
       - arn:aws:lambda:${aws:region}:094274105915:layer:AWSLambdaPowertoolsTypeScript:16
     events:
       - httpApi:
-        method: Any
-        path: /posts
+          method: Any
+          path: /posts
       - httpApi:
-        method: Any
-        path: /posts/{any+}
+          method: Any
+          path: /posts/{any+}
         
