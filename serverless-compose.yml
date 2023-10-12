@@ -1,0 +1,4 @@
+services:
+  posts:
+    path: ./src/services/posts
+    config: serverless.${sls:stage}.yml

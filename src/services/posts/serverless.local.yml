@@ -1,0 +1,62 @@
+service: serverless-kevin-posts
+frameworkVersions: '3'
+useDotenv: true
+
+custom:
+  # authorizer:
+  #   arn: 'arn:'
+  #   scopes:
+  #     all: ${self:service}/all
+  #     create: ${self:service}/create
+  #     delete: ${self:service}/delete
+  #     read: ${self:service}/read
+  #     update: ${self:service}/update
+
+  esbuild:
+    sourcemap: true
+
+  serverless-offline:
+    httpPort: 4001
+    noAuth: true
+
+plugins:
+  - serverless-esbuild
+  - serverless-offline
+
+package:
+  individually: true
+
+provider:
+  name: aws
+  architecture: x86_64
+  httpApi:
+    cors:
+      allowedOrigins: '*'
+      allowedHeaders:
+        - Content-Type
+        - Authorization
+      allowedMethods:
+        - GET
+
+  runtime: nodejs18.x
+  region: ap-southeast-1
+  stage: local
+
+  environment:
+    STAGE: ${self:provider.stage}
+    JSONPlaceholder_BASE_URL: ${ssm:/serverless-kevin/dev/JSONPlaceholder_BASE_URL}
+
+functions:
+  posts:
+    handler: './adapters/primary/http.handler'
+    timeout: 30
+    layers:
+      - arn:aws:lambda:${aws:region}:094274105915:layer:AWSLambdaPowertoolsTypeScript:16
+    events:
+      - httpApi:
+        method: Any
+        path: /posts
+      - httpApi:
+        method: Any
+        path: /posts/{any+}
+        

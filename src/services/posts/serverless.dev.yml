@@ -1,0 +1,49 @@
+service: ${file(./serverless.local.yml):service}
+frameworkVersion: ${file(./serverless.local.yml):frameworkVersion}
+
+custom:
+  esbuild:
+    sourcemap: true
+
+plugins:
+  - serverless-esbuild
+
+package:
+  individually: true
+
+provider:
+  name: aws
+  architecture: x86_64
+  runtime: nodejs18.x
+  region: ap-southeast-1
+  stage: ${opt:stage}
+
+  tracing:
+    lambda: true
+
+  deploymentBucket:
+    name: serverless-kevin-deployment
+
+  stackTags:
+    Application: SERVERLESS_KEVIN
+    Environment: ${self:provider.stage}
+  
+  # vpc:
+    # securityGroupIds:
+      # - 
+    # subnetIds:
+      # -
+  
+  environment:
+    STAGE: ${self:provider.stage}
+    JSONPlaceholder_BASE_URL: ${ssm:/serverless-kevin/dev/JSONPlaceholder_BASE_URL}
+  
+  # iam:
+  #   role:
+  #     statements:
+  #       - Effect: Allow
+  #         Resource: '*'
+  #         Actions: 
+  #           -
+  
+functions: ${file(./serverless.local.yml):functions}
