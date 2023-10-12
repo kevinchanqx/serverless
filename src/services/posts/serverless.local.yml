@@ -54,9 +54,9 @@ functions:
       - arn:aws:lambda:${aws:region}:094274105915:layer:AWSLambdaPowertoolsTypeScript:16
     events:
       - httpApi:
-          method: Any
+          method: ANY
           path: /posts
       - httpApi:
-          method: Any
+          method: ANY
           path: /posts/{any+}
         

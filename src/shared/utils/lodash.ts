@@ -1,1 +1,1 @@
-export { get, isArray, isEmpty, isNil, set } from 'lodash'
+export { get, isArray, isEmpty, isNil, set, flattenDeep } from 'lodash'

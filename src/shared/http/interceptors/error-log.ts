@@ -15,6 +15,6 @@ export const errorLog = (name: string, logger: Logger) => async (error: Error | 
     return await Promise.reject(error)
   }
 
-  _logger.error('Error', error)
+  _logger.error('Error', { error })
   return await Promise.reject(error)
 }
