@@ -17,8 +17,8 @@ export type ClientRequestConfig = AxiosRequestConfig
 export type ClientResponse = AxiosResponse
 export type InternalClientRequestConfig = InternalAxiosRequestConfig
 
-export class HttpClient {
-  private readonly _client: AxiosInstance
+export abstract class HttpClient {
+  protected readonly _client: AxiosInstance
 
   private readonly logger: Logger
   private readonly name: string
@@ -34,19 +34,11 @@ export class HttpClient {
     this._client.interceptors.response.use(undefined, errorHandler(this.name))
   }
 
-  public async post (url: string, data?: unknown, config?: ClientRequestConfig): Promise<ClientResponse> {
-    return await this._client.post(url, data, config)
-  }
+  public abstract post (url: string, data?: unknown, config?: ClientRequestConfig): Promise<ClientResponse>
 
-  public async get (url: string, config?: ClientRequestConfig): Promise<ClientResponse> {
-    return await this._client.get(url, config)
-  }
+  public abstract get (url: string, config?: ClientRequestConfig): Promise<ClientResponse>
 
-  public async put (url: string, data?: unknown, config?: ClientRequestConfig): Promise<ClientResponse> {
-    return await this._client.put(url, data, config)
-  }
+  public abstract put (url: string, data?: unknown, config?: ClientRequestConfig): Promise<ClientResponse>
 
-  public async delete (url: string, config?: ClientRequestConfig): Promise<ClientResponse> {
-    return await this._client.delete(url, config)
-  }
+  public abstract delete (url: string, config?: ClientRequestConfig): Promise<ClientResponse>
 }
